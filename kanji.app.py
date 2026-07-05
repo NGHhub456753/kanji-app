@@ -115,7 +115,7 @@ elif menu == "✍️ テスト開始":
         st.session_state.current_question = 0
         st.session_state.score = 0
         st.session_state.answered = False
-        st.mode = "test"
+        st.session_state.mode = "test"  # ← ここを修正しました！
         random.shuffle(st.session_state.all_kanji_data)
     quiz_engine(st.session_state.all_kanji_data)
 
@@ -125,6 +125,6 @@ elif menu == "🔥 復習モード":
         st.session_state.current_question = 0
         st.session_state.score = 0
         st.session_state.answered = False
-        st.mode = "review"
+        st.session_state.mode = "review"  # ← ここも修正しました！
         random.shuffle(st.session_state.wrong_list)
     quiz_engine(st.session_state.wrong_list)
