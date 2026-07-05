@@ -1,32 +1,33 @@
 import streamlit as st
 
-# ---- 【最強版】身内バレ防止・管理画面完全非表示設定 ----
+# 最終兵器版：すべての管理メニュー・ツールバー・ボタンを完全に消し去るCSS
 st.markdown(
     """
     <style>
-    /* 1. 画面右上の「︙」メニューを消す */
-    #MainMenu {visibility: hidden;}
+    /* 1. 画面上部のヘッダーと右上のメニュー（︙）を非表示 */
+    header, [data-testid="stHeader"] {
+        visibility: hidden !important;
+        height: 0px !important;
+    }
     
-    /* 2. 画面最下部の「Made with Streamlit」や「Created by」のフッターを消す */
-    footer {visibility: hidden;}
+    /* 2. 画面右下・右上に出るツールバー（アカウント、管理ボタンなど）を完全に除外 */
+    .stAppToolbar, [data-testid="stAppToolbar"], div[data-testid="stStatusWidget"] {
+        display: none !important;
+    }
     
-    /* 3. 画面上部の余白（ヘッダー）を消す */
-    header {visibility: hidden;}
+    /* 3. 画面下部のフッター（Made with Streamlit）を非表示 */
+    footer, [data-testid="stFooter"] {
+        visibility: hidden !important;
+    }
     
-    /* 4. スマホやPCで右下・右上に出てくるアカウント、デプロイ、ツールバーの領域を完全に消す */
-    .stAppToolbar {display: none !important;}
-    div[data-testid="stStatusWidget"] {display: none !important;}
-    .stAppDeployButton {display: none !important;}
-    iframe[title="manage-app"] {display: none !important;}
-    
-    /* 5. 万が一のための予備：ビューワー用のフッター要素を強制非表示 */
-    div[data-testid="stFooter"] {display: none !important;}
+    /* 4. スマホ版や最新版で右下に出現する「Manage app」のフローティングボタンやiframeを強制非表示 */
+    iframe[title="manage-app"], button.stAppDeployButton, div.stAppDeployButton {
+        display: none !important;
+    }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_contents=True # もし以前のコードが unsafe_allow_html=True だったらそちらに変えてもOKです
 )
-# ----------------------------------------------------
-
 import random
 
 # data.py から KANJI_LIST を読み込む
