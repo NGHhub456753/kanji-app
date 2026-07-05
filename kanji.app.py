@@ -1,22 +1,22 @@
 import streamlit as st
 
-# ---- 画面上のすべてのStreamlit標準メニュー・フッター・アカウント表示を完全に非表示にする ----
-hide_streamlit_style = """
+# --- 画面上の余計なメニューやアカウント、ツールバーをスマホでも完全に非表示にする ---
+st.markdown(
+    """
     <style>
-    #MainMenu {visibility: hidden;}      /* 右上の「︙」メニューを隠す */
-    footer {visibility: hidden;}         /* 下部のフッターを隠す */
-    header {visibility: hidden;}         /* 上部のヘッダー領域を隠す */
-    
-    /* 画面右下などに出現するViewer/Developerのアカウント連携ボタンやツールバーを強制的に非表示 */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     .stAppToolbar {visibility: hidden;}
-    [data-testid="stStatusWidget"] {visibility: hidden;}
-    div[data-testid="stNotification"] {display: none;}
-    
-    /* 埋め込みリンクやViewer情報が含まれるエリアを完全に無効化 */
-    iframe {visibility: hidden;}
+    /* スマホ版や最新版の右下・右上の管理用フローティングボタンを強制非表示 */
+    div[data-testid="stStatusWidget"] {visibility: hidden;}
+    button[title="View Lightning app"] {display: none !important;}
+    iframe[title="manage-app"] {display: none !important;}
+    div.stAppDeployButton {display: none !important;}
     </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 import random
 
 # data.py から KANJI_LIST を読み込む
