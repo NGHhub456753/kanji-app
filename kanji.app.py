@@ -1,22 +1,32 @@
 import streamlit as st
 
-# --- 画面上の余計なメニューやアカウント、ツールバーをスマホでも完全に非表示にする ---
+# ---- 【最強版】身内バレ防止・管理画面完全非表示設定 ----
 st.markdown(
     """
     <style>
+    /* 1. 画面右上の「︙」メニューを消す */
     #MainMenu {visibility: hidden;}
+    
+    /* 2. 画面最下部の「Made with Streamlit」や「Created by」のフッターを消す */
     footer {visibility: hidden;}
+    
+    /* 3. 画面上部の余白（ヘッダー）を消す */
     header {visibility: hidden;}
-    .stAppToolbar {visibility: hidden;}
-    /* スマホ版や最新版の右下・右上の管理用フローティングボタンを強制非表示 */
-    div[data-testid="stStatusWidget"] {visibility: hidden;}
-    button[title="View Lightning app"] {display: none !important;}
+    
+    /* 4. スマホやPCで右下・右上に出てくるアカウント、デプロイ、ツールバーの領域を完全に消す */
+    .stAppToolbar {display: none !important;}
+    div[data-testid="stStatusWidget"] {display: none !important;}
+    .stAppDeployButton {display: none !important;}
     iframe[title="manage-app"] {display: none !important;}
-    div.stAppDeployButton {display: none !important;}
+    
+    /* 5. 万が一のための予備：ビューワー用のフッター要素を強制非表示 */
+    div[data-testid="stFooter"] {display: none !important;}
     </style>
     """,
     unsafe_allow_html=True
 )
+# ----------------------------------------------------
+
 import random
 
 # data.py から KANJI_LIST を読み込む
